@@ -4,7 +4,7 @@
 
     <groupId>com.github.stevecrox</groupId>
     <artifactId>maven-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Maven Parent</name>
