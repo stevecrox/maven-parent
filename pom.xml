@@ -80,6 +80,16 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
                 <!-- Apache Maven Release Plugin Versions. -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -123,11 +133,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>${maven-project-info-reports-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-scm-publish-plugin</artifactId>
                     <version>${maven-scm-publish-plugin-version}</version>
                     <configuration>
@@ -138,19 +143,54 @@
                         <subDirectory>${project.groupId}/${project.artifactId}</subDirectory>
                     </configuration>
                 </plugin>
+                <!-- Maven Reporting Plugin. -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>${maven-project-info-reports-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
+                    <artifactId>maven-changelog-plugin</artifactId>
+                    <version>${maven-changelog-plugin-version}</version>
+                    <configuration>
+                        <displayFileRevDetailUrl>${project.scm.url}/tree/master/%FILE%</displayFileRevDetailUrl>
+                        <displayChangeSetDetailUrl>${project.scm.url}/commit</displayChangeSetDetailUrl>
+                        <headingDateFormat>MM-dd-yyyy</headingDateFormat>
+                        <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+                        <type>range</type>
+                        <range>30</range>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>taglist-maven-plugin</artifactId>
+                    <version>${taglist-maven-plugin-version}</version>
+                    <configuration>
+                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+                        <sourceFileLocale>en</sourceFileLocale>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changelog-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <profiles>
         <profile>
