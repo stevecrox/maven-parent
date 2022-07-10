@@ -202,7 +202,7 @@
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <signTag>true</signTag>
-                        <tagNameFormat>v{project.version}</tagNameFormat>
+                        <tagNameFormat>v${project.version}</tagNameFormat>
                     </configuration>
                 </plugin>
                 <!-- Apache Maven Reporting Plugin Definitions. -->
