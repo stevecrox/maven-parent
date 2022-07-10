@@ -59,6 +59,10 @@
         <!-- Apache Maven Build Plugin Versions. -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <!-- Apache Maven Test Plugin Versions. -->
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
         <!-- Apache Maven Release Plugin Versions. -->
         <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
@@ -71,6 +75,7 @@
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
         <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>3.2.0</maven-jxr-plugin.version>
+        <maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
         <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
 
         <!-- Site location to publish to. -->
@@ -80,7 +85,7 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Apache Maven Build Plugin Versions. -->
+                <!-- Apache Maven Build Plugin Definitions. -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -124,7 +129,47 @@
                         <source>${project.build.targetVersion}</source>
                     </configuration>
                 </plugin>
-                <!-- Apache Maven Release Plugin Versions. -->
+                <!-- Apache Maven Test Plugin Definitions. -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/*Integration*</exclude>
+                            <exclude>**/IT*</exclude>
+                            <exclude>**/*IT</exclude>
+                        </excludes>
+                        <includes>
+                            <include>**/*Test*</include>
+                            <include>**/*Test*</include>
+                        </includes>
+                        <reuseForks>false</reuseForks>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/*Test*</exclude>
+                            <exclude>**/*Test*</exclude>
+                        </excludes>
+                        <includes>
+                            <include>**/*Integration*</include>
+                            <include>**/IT*</include>
+                            <include>**/*IT</include>
+                        </includes>
+                        <reuseForks>false</reuseForks>
+                    </configuration>
+                </plugin>
+                <!-- Apache Maven Release Plugin Definitions. -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
@@ -160,7 +205,7 @@
                         <tagNameFormat>v{project.version}</tagNameFormat>
                     </configuration>
                 </plugin>
-                <!-- Apache Maven Reporting Plugin Versions. -->
+                <!-- Apache Maven Reporting Plugin Definitions. -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
@@ -195,6 +240,15 @@
                         <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
                         <type>range</type>
                         <range>30</range>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${maven-surefire-report-plugin.version}</version>
+                    <configuration>
+                        <aggregate>true</aggregate>
+                        <alwaysGenerateSurefireReport>true</alwaysGenerateSurefireReport>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -236,6 +290,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
