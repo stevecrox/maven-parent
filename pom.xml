@@ -8,8 +8,8 @@
     <packaging>pom</packaging>
 
     <name>Maven Parent</name>
-    <description>.</description>
-    <url>https://stevecrox.github.io/io.github.stevecrox/maven-parent/</url>
+    <description>SUPER POM to simplify development of Maven based projects.</description>
+    <url>https://${project.site.repository}/${project.groupId}/${project.artifactId}/</url>
     <inceptionYear>2022</inceptionYear>
 
     <scm>
@@ -33,6 +33,10 @@
             <id>main</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
+        <site>
+            <id>site</id>
+            <url>${project.scmpublish.pubScmUrl}</url>
+        </site>
     </distributionManagement>
 
     <developers>
@@ -56,6 +60,10 @@
         <project.build.targetVersion>1.8</project.build.targetVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetEncoding>ISO-8859-1</project.build.targetEncoding>
+        <!-- Details for uploading sites into Repository. -->
+        <project.site.repository>stevecrox.github.io</project.site.repository>
+        <project.scmpublish.pubScmUrl>scm:git:https://github.com//stevecrox/${project.site.repository}</project.scmpublish.pubScmUrl>
+        <project.staging.directory>${project.build.directory}/staging</project.staging.directory>
         <!-- Apache Maven Build Plugin Versions. -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
@@ -66,7 +74,7 @@
         <!-- Apache Maven Release Plugin Versions. -->
         <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-release-plugin.version>3.0.0-M6</maven-release-plugin.version>
         <releaseVersion />
         <!-- Apache Maven Reporting Plugin Versions. -->
         <maven-site-plugin.version>3.12.0</maven-site-plugin.version>
@@ -78,9 +86,6 @@
         <maven-jxr-plugin.version>3.2.0</maven-jxr-plugin.version>
         <maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
         <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
-
-        <!-- Site location to publish to. -->
-        <scmpublish.pubScmUrl>scm:git:https://github.com//stevecrox/stevecrox.github.io.git</scmpublish.pubScmUrl>
     </properties>
 
     <build>
@@ -213,6 +218,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${maven-site-plugin.version}</version>
+                    <configuration>
+                        <topSiteURL>${project.scmpublish.pubScmUrl}</topSiteURL>
+                    </configuration>
                     <executions>
                         <execution>
                             <id>attach-descriptor</id>
@@ -229,8 +237,8 @@
                     <configuration>
                         <scmBranch>main</scmBranch>
                         <serverId>site</serverId>
-                        <content>${project.reporting.outputDirectory}</content>
-                        <pubScmUrl>${scmpublish.pubScmUrl}</pubScmUrl>
+                        <content>${project.staging.directory}</content>
+                        <pubScmUrl>${project.scmpublish.pubScmUrl}</pubScmUrl>
                         <subDirectory>${project.groupId}/${project.artifactId}</subDirectory>
                     </configuration>
                 </plugin>
