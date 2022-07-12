@@ -93,6 +93,7 @@
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <source>${project.build.sourceVersion}</source>
+                        <release>${project.build.sourceVersion}</release>
                         <target>${project.build.targetVersion}</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <!-- Added so CI's like Jenkins can scan the console for warnings. -->
@@ -127,7 +128,8 @@
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <serialwarn>true</serialwarn>
-                        <source>${project.build.targetVersion}</source>
+                        <source>${project.build.sourceVersion}</source>
+                        <release>${project.build.sourceVersion}</release>
                     </configuration>
                 </plugin>
                 <!-- Apache Maven Test Plugin Definitions. -->
@@ -211,6 +213,14 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${maven-site-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-descriptor</id>
+                            <goals>
+                                <goal>attach-descriptor</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -286,10 +296,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
             </plugin>
             <plugin>
@@ -341,6 +347,14 @@
                     </plugin>
                 </plugins>
             </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
         </profile>
         <profile>
             <id>release</id>
