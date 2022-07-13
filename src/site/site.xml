@@ -5,9 +5,9 @@
     <edit>${project.scm.url}</edit>
 
     <skin>
-        <groupId>io.github.stevecrox</groupId>
-        <artifactId>maven-site-bootstrap-skin</artifactId>
-        <version>0.9.12</version>
+        <groupId>io.github.stevecrox.maven.skins</groupId>
+        <artifactId>bootstrap-site-skin</artifactId>
+        <version>0.9.13</version>
     </skin>
 
     <custom>
