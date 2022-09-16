@@ -35,7 +35,7 @@
         </repository>
         <site>
             <id>site</id>
-            <url>file://${project.build.directory}/staging/</url>
+            <url>${scm.connection}</url>
         </site>
     </distributionManagement>
 
@@ -220,6 +220,7 @@
                     <configuration>
                         <pomPackagingOnly>false</pomPackagingOnly>
                         <topSiteURL>${project.url}</topSiteURL>
+                        <outputDirectory>${project.staging.directory}</outputDirectory>
                         <workingDirectory>${project.build.interim.site.directory}</workingDirectory>
                     </configuration>
                     <executions>
@@ -236,9 +237,9 @@
                     <artifactId>maven-scm-publish-plugin</artifactId>
                     <version>${maven-scm-publish-plugin.version}</version>
                     <configuration>
-                        <content>${project.staging.directory}</content>
                         <checkinComment>Updating Site documentation</checkinComment>
-                        <pubScmUrl>${project.scm.connection}</pubScmUrl>
+                        <pubScmUrl>${scm.connection}</pubScmUrl>
+                        <content>${project.staging.directory}</content>
                         <scmBranch>gh-pages</scmBranch>
                         <serverId>site</serverId>
                     </configuration>
