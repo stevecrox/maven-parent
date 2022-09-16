@@ -7,7 +7,7 @@
     <skin>
         <groupId>io.github.stevecrox.maven.skins</groupId>
         <artifactId>bootstrap-site-skin</artifactId>
-        <version>0.9.13</version>
+        <version>1.0.1</version>
     </skin>
 
     <custom>
@@ -15,6 +15,11 @@
             <gitHub>
                 <projectId>stevecrox/maven-parent</projectId>
             </gitHub>
+            <navbar>
+                <icon>
+                    <href>${project.url}</href>
+                </icon>
+            </navbar>
         </bootstrapSkin>
     </custom>
 
