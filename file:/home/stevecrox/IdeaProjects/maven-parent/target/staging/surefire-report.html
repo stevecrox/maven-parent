@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="generator" content="#generatedBy()" />
-    <title>Maven Parent &#x2013; Project Summary</title>
+    <title>Maven Parent &#x2013; Surefire Report</title>
     <link rel="icon" href="./img/favicons/favicon.ico">
     <!-- CSS Stylesheets, site.css is included so downstream projects can override them as appropriate. -->
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
@@ -40,7 +40,7 @@
                      <li class="nav-item dropdown-item"><a href="plugin-management.html" title="Plugin Management" class="dropdown-item" >Plugin Management</a></li>
                      <li class="nav-item dropdown-item"><a href="plugins.html" title="Plugins" class="dropdown-item" >Plugins</a></li>
                      <li class="nav-item dropdown-item"><a href="scm.html" title="Source Code Management" class="dropdown-item" >Source Code Management</a></li>
-                     <li class="nav-item dropdown-item"><a title="Summary" class="dropdown-item">Summary</a></li>
+                     <li class="nav-item dropdown-item"><a href="summary.html" title="Summary" class="dropdown-item" >Summary</a></li>
                      <li class="nav-item dropdown-item"><a href="team.html" title="Team" class="dropdown-item" >Team</a></li>
                    </ul>
                  </li>
@@ -50,7 +50,7 @@
                      <li class="nav-item dropdown-item"><a href="changelog.html" title="Change Log" class="dropdown-item" >Change Log</a></li>
                      <li class="nav-item dropdown-item"><a href="file-activity.html" title="File Activity" class="dropdown-item" >File Activity</a></li>
                      <li class="nav-item dropdown-item"><a href="dev-activity.html" title="Developer Activity" class="dropdown-item" >Developer Activity</a></li>
-                     <li class="nav-item dropdown-item"><a href="surefire-report.html" title="Surefire Report" class="dropdown-item" >Surefire Report</a></li>
+                     <li class="nav-item dropdown-item"><a title="Surefire Report" class="dropdown-item">Surefire Report</a></li>
                    </ul>
                  </li>
                </ul>
@@ -65,7 +65,7 @@
           <div id="projectBaDateVersionContainer" class="justify-content-end">
             <span id="projectLastPublished" class="px-1 navbar-text">Last Published: 2022-09-16</span>
             <span id="projectDateVersionSpacer" class="px-1 navbar-text">|</span>
-            <span id="projectVersion" class="px-1 navbar-text">Version: 0.0.11</span>
+            <span id="projectVersion" class="px-1 navbar-text">Version: 0.0.11-SNAPSHOT</span>
           </div>
         </div>
       </nav>
@@ -73,41 +73,44 @@
 
     <main class="flex-shrink-0" role="main">
       <div class="container rounded">
-<section>
-<h2><a name="Project_Summary"></a>Project Summary</h2><a name="Project_Summary"></a><section>
-<h3><a name="Project_Information"></a>Project Information</h3><a name="Project_Information"></a>
-<table border="0" class="table table-striped">
+<script type="text/javascript">
+//<![CDATA[
+function toggleDisplay(elementId) {
+ var elm = document.getElementById(elementId + '-error');
+ if (elm == null) {
+  elm = document.getElementById(elementId + '-failure');
+ }
+ if (elm && typeof elm.style != "undefined") {
+  if (elm.style.display == "none") {
+   elm.style.display = "";
+   document.getElementById(elementId + '-off').style.display = "none";
+   document.getElementById(elementId + '-on').style.display = "inline";
+  } else if (elm.style.display == "") {   elm.style.display = "none";
+   document.getElementById(elementId + '-off').style.display = "inline";
+   document.getElementById(elementId + '-on').style.display = "none";
+  } 
+ } 
+ }
+//]]>
+</script><section>
+<h2><a name="Surefire_Report"></a>Surefire Report</h2></section><section>
+<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a><br />
+<table border="1" class="table table-striped">
 <tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
 <tr class="b">
-<td align="left">Name</td>
-<td>Maven Parent</td></tr>
-<tr class="a">
-<td align="left">Description</td>
-<td>SUPER POM to simplify development of Maven based projects.</td></tr>
-<tr class="b">
-<td align="left">Homepage</td>
-<td><a class="externalLink" href="https://stevecrox.github.io/maven-parent/">https://stevecrox.github.io/maven-parent/</a></td></tr></table></section><section>
-<h3><a name="Project_Organization"></a>Project Organization</h3><a name="Project_Organization"></a>
-<p>This project does not belong to an organization.</p></section><section>
-<h3><a name="Build_Information"></a>Build Information</h3><a name="Build_Information"></a>
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
-<tr class="b">
-<td align="left">GroupId</td>
-<td>io.github.stevecrox</td></tr>
-<tr class="a">
-<td align="left">ArtifactId</td>
-<td>maven-parent</td></tr>
-<tr class="b">
-<td align="left">Version</td>
-<td>0.0.11</td></tr>
-<tr class="a">
-<td align="left">Type</td>
-<td>pom</td></tr></table></section></section>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0%</td>
+<td align="left">0</td></tr></table><br />
+<p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></section>
       </div>
     </main>
 
