@@ -35,7 +35,7 @@
         </repository>
         <site>
             <id>site</id>
-            <url>${scm.connection}</url>
+            <url>./</url>
         </site>
     </distributionManagement>
 
