@@ -63,7 +63,10 @@
         <!-- Used to get the Site files into the right structure, while also being readable in an SCM. -->
         <project.docs.directory>docs</project.docs.directory>
         <project.build.interim.site.directory>${project.build.directory}/docs-site</project.build.interim.site.directory>
-        <project.staging.directory>${project.build.directory}/staging/</project.staging.directory>
+        <!-- Used to publish the maven site. -->
+        <scmpublish.scm.branch>gh-pages</scmpublish.scm.branch>
+        <scmpublish.pubScmUrl>${scm.connection}</scmpublish.pubScmUrl>
+        <scmpublish.content>${project.build.directory}/staging/</scmpublish.content>
         <!-- Apache Maven Build Plugin Versions. -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
@@ -86,6 +89,9 @@
         <maven-jxr-plugin.version>3.2.0</maven-jxr-plugin.version>
         <maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
         <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
+        <!-- GitHub Changelog Parameters -->
+        <displayFileRevDetailUrl>${project.scm.url}/tree/master/%FILE%</displayFileRevDetailUrl>
+        <displayChangeSetDetailUrl>${project.scm.url}/commit</displayChangeSetDetailUrl>
     </properties>
 
     <build>
@@ -220,7 +226,6 @@
                     <configuration>
                         <pomPackagingOnly>false</pomPackagingOnly>
                         <topSiteURL>${project.url}</topSiteURL>
-                        <outputDirectory>${project.staging.directory}</outputDirectory>
                         <workingDirectory>${project.build.interim.site.directory}</workingDirectory>
                     </configuration>
                     <executions>
@@ -238,9 +243,6 @@
                     <version>${maven-scm-publish-plugin.version}</version>
                     <configuration>
                         <checkinComment>Updating Site documentation</checkinComment>
-                        <pubScmUrl>${scm.connection}</pubScmUrl>
-                        <content>${project.staging.directory}</content>
-                        <scmBranch>gh-pages</scmBranch>
                         <serverId>site</serverId>
                     </configuration>
                 </plugin>
