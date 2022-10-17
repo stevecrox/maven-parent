@@ -60,6 +60,14 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetEncoding>ISO-8859-1</project.build.targetEncoding>
+        <!-- Added so CI's like Jenkins can scan the console for warnings. -->
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+
+        <!-- Maven Source Plugin Settings. -->
+        <maven.source.attach>true</maven.source.attach>
+        <maven.source.includePom>true</maven.source.includePom>
+
         <!-- Used to get the Site files into the right structure, while also being readable in an SCM. -->
         <project.docs.directory>docs</project.docs.directory>
         <project.build.interim.site.directory>${project.build.directory}/docs-site</project.build.interim.site.directory>
@@ -103,12 +111,6 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <release>${maven.compiler.source}</release>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <!-- Added so CI's like Jenkins can scan the console for warnings. -->
-                        <showDeprecation>true</showDeprecation>
-                        <showWarnings>true</showWarnings>
                         <!-- Added to stop the compiler from including build artifacts/project data. -->
                         <excludes>
                             <exclude>**/bin/**/*.*</exclude>
@@ -126,20 +128,13 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven-source-plugin.version}</version>
-                    <configuration>
-                        <attach>true</attach>
-                        <includePom>true</includePom>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
                     <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding>
                         <serialwarn>true</serialwarn>
-                        <source>${maven.compiler.source}</source>
-                        <release>${maven.compiler.source}</release>
                     </configuration>
                 </plugin>
                 <!-- Apache Maven Test Plugin Definitions. -->
