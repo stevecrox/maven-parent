@@ -56,8 +56,8 @@
 
     <properties>
         <!-- Compiler settings, lets you tweak what JDK you are using as needed. -->
-        <project.build.sourceVersion>1.8</project.build.sourceVersion>
-        <project.build.targetVersion>1.8</project.build.targetVersion>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetEncoding>ISO-8859-1</project.build.targetEncoding>
         <!-- Used to get the Site files into the right structure, while also being readable in an SCM. -->
@@ -103,9 +103,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${project.build.sourceVersion}</source>
-                        <release>${project.build.sourceVersion}</release>
-                        <target>${project.build.targetVersion}</target>
+                        <source>${maven.compiler.source}</source>
+                        <release>${maven.compiler.source}</release>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <!-- Added so CI's like Jenkins can scan the console for warnings. -->
                         <showDeprecation>true</showDeprecation>
@@ -139,8 +138,8 @@
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <serialwarn>true</serialwarn>
-                        <source>${project.build.sourceVersion}</source>
-                        <release>${project.build.sourceVersion}</release>
+                        <source>${maven.compiler.source}</source>
+                        <release>${maven.compiler.source}</release>
                     </configuration>
                 </plugin>
                 <!-- Apache Maven Test Plugin Definitions. -->
