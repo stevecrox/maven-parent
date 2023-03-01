@@ -24,8 +24,6 @@ jobs:
           cache: 'maven'
           distribution: 'temurin'
           java-version: ${{ matrix.version }}
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
 
       - name: Build with Maven
         run: mvn --batch-mode --settings .github/maven_settings.xml clean install
