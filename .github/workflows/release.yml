@@ -53,7 +53,7 @@ jobs:
 
       - name: Release with Maven
         if: ${{ contains(github.ref, 'refs/heads/release') }}
-        run: mvn --batch-mode --settings .github/maven_settings.xml release:perform -DreleaseVersion=${{ env.BRANCH_NAME }} -Dskin.version=${{ env.BRANCH_NAME }} -Dgoals=clean,jacoco:prepare-agent,deploy,jacoco:report,spotbugs:spotbugs,pmd:pmd,pmd:cpd,org.sonarsource.scanner.maven:sonar-maven-plugin:sonar,site,site:stage,scm-publish:publish-scm
+        run: mvn --batch-mode --settings .github/maven_settings.xml release:perform -DreleaseVersion=${{ env.BRANCH_NAME }} -Dskin.version=${{ env.BRANCH_NAME }} -Dgoals=clean,jacoco:prepare-agent,deploy,jacoco:report,spotbugs:spotbugs,pmd:pmd,pmd:cpd,site,site:stage,scm-publish:publish-scm
         env:
           GITHUB_USER: ${{ secrets.SCM_USER }}
           GITHUB_TOKEN: ${{ secrets.SCM_TOKEN }}
