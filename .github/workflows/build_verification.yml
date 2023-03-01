@@ -11,44 +11,56 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [ 8, 11, 17 ]
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Check out Source Code
+        uses: actions/checkout@v2.5.0
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
+      - name: Set up JDK ${{ matrix.version }}
+        uses: actions/setup-java@v3
         with:
-          java-version: 11
+          cache: 'maven'
+          distribution: 'temurin'
+          java-version: ${{ matrix.version }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
 
-      - name: Cache Maven packages
-        uses: actions/cache@v1
+      - name: Build with Maven
+        run: mvn --batch-mode --settings .github/maven_settings.xml clean install
+        env:
+          GITHUB_USER: ${{ secrets.SCM_USER }}
+          GITHUB_TOKEN: ${{ secrets.SCM_TOKEN }}
+          GPG_KEY_ID: ${{ secrets.GPG_PRIVATE_KEYNAME }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
+          OSSRH_USER: ${{ secrets.OSSRH_USER }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+
+  analyse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Source Code
+        uses: actions/checkout@v2.5.0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+          cache: 'maven'
+          distribution: 'temurin'
+          java-version: 17
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
 
       - name: Jacoco Coverage
-        run: mvn --batch-mode org.jacoco:jacoco-maven-plugin:0.8.8:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.8:report
+        run: mvn --batch-mode --settings .github/maven_settings.xml org.jacoco:jacoco-maven-plugin:0.8.8:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.8:report install
         env:
-          OSSRH_USER: ${{ secrets.OSSRH_USER }}
-          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
           GITHUB_USER: ${{ secrets.SCM_USER }}
           GITHUB_TOKEN: ${{ secrets.SCM_TOKEN }}
           GPG_KEY_ID: ${{ secrets.GPG_PRIVATE_KEYNAME }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
-          
-      - name: Build with Maven
-        run: mvn --batch-mode --settings .github/maven_settings.xml clean install -DskipTests=true
-        env:
           OSSRH_USER: ${{ secrets.OSSRH_USER }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-          GITHUB_USER: ${{ secrets.SCM_USER }}
-          GITHUB_TOKEN: ${{ secrets.SCM_TOKEN }}
-          GPG_KEY_ID: ${{ secrets.GPG_PRIVATE_KEYNAME }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
 
       - name: Checkstyle analyse
         uses: dbelyaev/action-checkstyle@v0.5.1
@@ -56,19 +68,31 @@ jobs:
           github_token: ${{ secrets.SCM_TOKEN }}
           reporter: github-pr-review
           level: warning
-          
+
       - name: SpotBugs
-        run: mvn --batch-mode com.github.spotbugs:spotbugs-maven-plugin:4.6.0.0:spotbugs -Dspotbugs.xmlOutput=true -Dspotbugs.effort=max -Dspotbugs.failOnError=false -Dspotbugs.threshold=low
+        run: mvn --batch-mode --settings .github/maven_settings.xml com.github.spotbugs:spotbugs-maven-plugin:4.6.0.0:spotbugs -Dspotbugs.xmlOutput=true -Dspotbugs.effort=max -Dspotbugs.failOnError=false -Dspotbugs.threshold=low
         env:
-          OSSRH_USER: ${{ secrets.OSSRH_USER }}
-          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
           GITHUB_USER: ${{ secrets.SCM_USER }}
           GITHUB_TOKEN: ${{ secrets.SCM_TOKEN }}
           GPG_KEY_ID: ${{ secrets.GPG_PRIVATE_KEYNAME }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
-          
+          OSSRH_USER: ${{ secrets.OSSRH_USER }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+
       - name: SpotBugs Annotation
         uses: jwgmeligmeyling/spotbugs-github-action@master
         with:
           path: '**/spotbugsXml.xml'
-          token: ${{ secrets.SCM_TOKEN }}
+
+      - name: PMD
+        run: mvn --batch-mode --settings .github/maven_settings.xml --file pom.xml pmd:pmd pmd:cpd
+        env:
+          GITHUB_USER: ${{ secrets.SCM_USER }}
+          GITHUB_TOKEN: ${{ secrets.SCM_TOKEN }}
+          OSSRH_USER: ${{ secrets.OSSRH_USER }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+
+      - name: PMD Annotation
+        uses: jwgmeligmeyling/pmd-github-action@master
+        with:
+          path: '**/pmd.xml'
