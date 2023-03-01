@@ -80,7 +80,7 @@
         <!-- Used to get the Site files into the right structure, while also being readable in an SCM. -->
         <project.docs.directory>docs</project.docs.directory>
         <project.build.interim.site.directory>${project.build.directory}/docs-site</project.build.interim.site.directory>
-        <uk.pallas.systems.site.version>0.0.3</uk.pallas.systems.site.version>
+
         <!-- Used to publish the maven site. -->
         <scmpublish.scm.branch>gh-pages</scmpublish.scm.branch>
         <scmpublish.pubScmUrl>${project.scm.connection}</scmpublish.pubScmUrl>
@@ -526,31 +526,6 @@
                                         </resource>
                                     </resources>
                                     <outputDirectory>${project.build.interim.site.directory}</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack-site-resources</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>uk.pallas.systems.site</groupId>
-                                            <artifactId>resources</artifactId>
-                                            <version>${uk.pallas.systems.site.version}</version>
-                                            <type>jar</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.interim.site.directory}/resources/</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
                                 </configuration>
                             </execution>
                         </executions>
