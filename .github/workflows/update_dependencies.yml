@@ -22,6 +22,19 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
 
+      - name: Configure GPG key settings
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
+          git_user_signingkey: true
+          git_config_global: true
+          git_committer_name: "stevecrox"
+          git_committer_email: "stevecrox@hotmail.com"
+          git_commit_gpgsign: true
+          git_push_gpgsign: false
+          git_tag_gpgsign: true
+
       - name: Update Parent
         run: mvn --batch-mode --settings .github/maven_settings.xml org.codehaus.mojo:versions-maven-plugin:update-parent ${{ secrets.MAVEN_VERSION_OPTS }}
         env:
@@ -58,6 +71,8 @@ jobs:
           cache: 'maven'
           distribution: 'temurin'
           java-version: 17
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
 
       - name: Configure GPG key settings
         uses: crazy-max/ghaction-import-gpg@v5
@@ -65,10 +80,12 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
           git_user_signingkey: true
+          git_config_global: true
           git_committer_name: "stevecrox"
           git_committer_email: "stevecrox@hotmail.com"
           git_commit_gpgsign: true
           git_push_gpgsign: false
+          git_tag_gpgsign: true
 
       - name: Update Parent
         run: mvn --batch-mode --settings .github/maven_settings.xml org.codehaus.mojo:versions-maven-plugin:update-parent ${{ secrets.MAVEN_VERSION_OPTS }}
