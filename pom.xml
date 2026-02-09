@@ -69,7 +69,7 @@
         <project.build.targetEncoding>ISO-8859-1</project.build.targetEncoding>
 
         <!-- Compiler settings, lets you tweak what JDK you are using as needed. -->
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.failOnError>true</maven.compiler.failOnError>
@@ -90,40 +90,40 @@
         <displayChangeSetDetailUrl>${project.scm.url}/commit</displayChangeSetDetailUrl>
 
         <!-- Apache Maven Build Plugin Versions. -->
-        <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
-        <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
-        <maven-deploy-plugin.version>3.1.0</maven-deploy-plugin.version>
-        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-resources-plugin.version>3.4.0</maven-resources-plugin.version>
+        <maven-dependency-plugin.version>3.10.0</maven-dependency-plugin.version>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
 
         <!-- Apache Maven Test Plugin Versions. -->
-        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M9</maven-failsafe-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
         <!-- Jacoco Settings. -->
         <argLine />
 
         <!-- Apache Maven Release Plugin Versions. -->
         <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
         <releaseVersion />
 
         <!-- Apache Maven Reporting Plugin Versions. -->
-        <maven-site-plugin.version>4.0.0-M5</maven-site-plugin.version>
-        <maven-project-info-reports-plugin.version>3.4.2</maven-project-info-reports-plugin.version>
-        <maven-scm-publish-plugin.version>3.1.0</maven-scm-publish-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
+        <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
         <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
-        <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
-        <maven-surefire-report-plugin.version>3.0.0-M9</maven-surefire-report-plugin.version>
-        <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
-        <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
+        <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
+        <maven-surefire-report-plugin.version>3.5.4</maven-surefire-report-plugin.version>
+        <taglist-maven-plugin.version>3.2.2</taglist-maven-plugin.version>
+        <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
         <sonar-maven-plugin.version>5.1</sonar-maven-plugin.version>
 
         <!-- Spotbugs specific configuration. -->
-        <spotbugs-maven-plugin.version>4.7.3.2</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>4.9.8.2</spotbugs-maven-plugin.version>
         <spotbugs.xmlOutput>true</spotbugs.xmlOutput>
         <spotbugs.effort>Max</spotbugs.effort>
         <spotbugs.skipEmptyReport>true</spotbugs.skipEmptyReport>
