@@ -32,11 +32,11 @@
     <distributionManagement>
         <snapshotRepository>
             <id>snapshots</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://maven.pkg.github.com/${github_organisation}/${github_repository_name}</url>
         </snapshotRepository>
         <repository>
             <id>main</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>https://maven.pkg.github.com/${github_organisation}/${github_repository_name}</url>
         </repository>
         <site>
             <id>site</id>
@@ -106,6 +106,7 @@
         <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
+        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
         <releaseVersion />
 
         <!-- Apache Maven Reporting Plugin Versions. -->
@@ -258,6 +259,15 @@
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <tagNameFormat>v${releaseVersion}</tagNameFormat>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>${central-publishing-maven-plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <publishingServerId>central</publishingServerId>
                     </configuration>
                 </plugin>
 
