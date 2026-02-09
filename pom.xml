@@ -85,9 +85,6 @@
         <scmpublish.scm.branch>gh-pages</scmpublish.scm.branch>
         <scmpublish.pubScmUrl>${project.scm.connection}</scmpublish.pubScmUrl>
         <scmpublish.content>${project.build.directory}/staging</scmpublish.content>
-        <!-- GitHub Changelog Parameters -->
-        <displayFileRevDetailUrl>${project.scm.url}/tree/master/%FILE%</displayFileRevDetailUrl>
-        <displayChangeSetDetailUrl>${project.scm.url}/commit</displayChangeSetDetailUrl>
 
         <!-- Apache Maven Build Plugin Versions. -->
         <maven-resources-plugin.version>3.4.0</maven-resources-plugin.version>
@@ -114,7 +111,6 @@
         <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
         <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-        <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
         <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
         <maven-surefire-report-plugin.version>3.5.4</maven-surefire-report-plugin.version>
@@ -309,19 +305,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-changelog-plugin</artifactId>
-                    <version>${maven-changelog-plugin.version}</version>
-                    <configuration>
-                        <displayFileRevDetailUrl>${project.scm.url}/tree/master/%FILE%</displayFileRevDetailUrl>
-                        <displayChangeSetDetailUrl>${project.scm.url}/commit</displayChangeSetDetailUrl>
-                        <headingDateFormat>MM-dd-yyyy</headingDateFormat>
-                        <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-                        <type>range</type>
-                        <range>30</range>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-report-plugin</artifactId>
                     <version>${maven-surefire-report-plugin.version}</version>
                     <configuration>
@@ -384,10 +367,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changelog-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
