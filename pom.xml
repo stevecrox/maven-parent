@@ -111,7 +111,7 @@
         <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
         <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
         <maven-surefire-report-plugin.version>3.5.4</maven-surefire-report-plugin.version>
         <taglist-maven-plugin.version>3.2.2</taglist-maven-plugin.version>
