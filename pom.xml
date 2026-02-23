@@ -113,7 +113,7 @@
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
-        <maven-surefire-report-plugin.version>3.5.4</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>3.5.5</maven-surefire-report-plugin.version>
         <taglist-maven-plugin.version>3.2.2</taglist-maven-plugin.version>
         <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
         <sonar-maven-plugin.version>5.1</sonar-maven-plugin.version>
